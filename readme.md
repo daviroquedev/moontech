@@ -1,98 +1,85 @@
-# Simulador de AGV com Node.js, Angular e Docker
+# Prueba Técnica Moontech (Full Stack) - Simulador Integrado de AGV
 
-Este projeto é um simulador em tempo real de um **AGV (Automated Guided Vehicle)**, construído com uma arquitetura de microsserviços moderna e totalmente containerizada com Docker. Ele serve como um protótipo para o desenvolvimento de sistemas de controle e gerenciamento de frotas de robôs.
+Este proyecto fue desarrollado para cumplir con todos los requisitos de la Prueba Técnica Full Stack de Moontech. La aplicación consiste en un backend robusto construido con **NestJS** y un frontend reactivo con **Angular**, completamente containerizados con Docker.
 
-![Imagem de um robô se movendo em uma tela de simulação]
-
----
-
-## ✨ Funcionalidades Atuais
-
-* **Simulação em Tempo Real:** Visualização de um AGV se movendo em um ambiente 2D (`<canvas>`).
-* **Controle Manual:** Interface com botões para controlar o movimento e a rotação do AGV em tempo real.
-* **Detecção de Limites:** O AGV detecta as "paredes" do ambiente virtual e para, evitando sair da tela.
-* **Comunicação Bidirecional:** Uso de WebSockets (via Socket.IO) para uma comunicação de baixa latência entre o frontend e o backend.
-* **Arquitetura Escalável:** Projeto construído com serviços desacoplados (frontend, backend, banco de dados) e orquestrados com Docker Compose.
+Además de los requisitos básicos, el proyecto integra una funcionalidad de **simulador de AGV (Vehículo Guiado Automáticamente)** en tiempo real, accesible tras la autenticación del usuario, demostrando la integración de una API REST segura con comunicación vía WebSockets.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## ✅ Cumplimiento de Requisitos
 
--   **Backend:** Node.js com Express.js
--   **Frontend:** Angular 18
--   **Comunicação em Tempo Real:** Socket.IO
--   **Banco de Dados:** MongoDB
--   **Containerização:** Docker & Docker Compose
+El proyecto implementa con éxito todos los puntos obligatorios y valorables del desafío.
+
+### Requisitos del Backend (Node: NestJS)
+
+-   [x] **Conexión a Gestor de Bases de Datos:** La aplicación se conecta a una instancia de **MongoDB** gestionada por Docker.
+-   [x] **Colección de Documentos de Usuarios:**
+    -   [x] `nombre`: Texto alfanumérico.
+    -   [x] `contraseña`: Texto alfanumérico (almacenado de forma segura con hash).
+    -   [x] `email`: Texto alfanumérico y único.
+    -   [x] `activo`: Booleano.
+-   [x] **Colección de Documentos de Log de Conexiones:**
+    -   [x] `fecha`: Fecha de conexión/desconexión.
+    -   [x] `usuario`: Referencia al usuario.
+    -   [x] `login`: Booleano (`true` para login, `false` para logout).
+-   [x] **Funcionalidad:**
+    -   [x] **Crear/Actualizar/Eliminar usuarios:** Implementado a través de una API REST protegida.
+    -   [x] **Autenticación de usuarios existentes:** Implementada con un endpoint de login seguro.
+    -   [x] **Creación de log de conexión:** Los logs se crean automáticamente al iniciar y cerrar sesión.
+
+### Requisitos del Frontend (Angular)
+
+-   [x] **Pantalla de inicio de sesión:** Una página `/login` que permite a los usuarios autenticarse.
+-   [x] **Pantalla de mantenimiento de usuarios (Formulario CRUD):** Una página `/admin/users` (protegida) que permite visualizar, agregar, editar y eliminar usuarios.
+-   [ ] **Opcional - Pantalla de visualización de conexiones:** Esta funcionalidad está pendiente de implementación.
+
+---
+
+## ✨ Puntos Valorables Implementados
+
+Este proyecto fue construido con foco en las mejores prácticas modernas de desarrollo, cubriendo todos los puntos valorables:
+
+-   [x] **Conexión con WebSockets:** La comunicación para el simulador de AGV es en tiempo real usando Socket.IO, integrado de forma modular en NestJS mediante un **Gateway**.
+-   [x] **Uso de Estrategias de Seguridad (JWT):** La autenticación se basa en JSON Web Tokens. El login genera un token y las rutas protegidas lo validan usando una **Estrategia JWT** con Passport.js.
+-   [x] **Población de Datos Iniciales:** Un **"seeder"** se ejecuta al iniciar el backend para asegurar que un usuario `admin` estándar exista siempre en la base de datos.
+-   [x] **Manejo de Variables de Entorno:** La aplicación usa un archivo `.env` para gestionar variables sensibles (como la cadena de conexión a MongoDB y el secreto JWT), cargadas de forma segura mediante el módulo `@nestjs/config`.
+-   [x] **Encriptación de Contraseñas:** Las contraseñas nunca se guardan en texto plano. Se usa la librería **`bcryptjs`** para crear un hash seguro de todas las contraseñas antes de almacenarlas.
+-   [x] **API Rest:** El backend expone una API REST clara y bien definida para la autenticación y el CRUD de usuarios.
+-   [x] **Gestión de Tokens (JWT) en el Frontend:** El `AuthService` en Angular maneja el ciclo de vida del token, almacenándolo en `localStorage`.
+-   [x] **Uso de Interceptors:** Un `HttpInterceptor` se usa para anexar automáticamente el token JWT a todas las solicitudes hacia la API protegida.
+-   [x] **Uso de Route Guards:** Un `CanActivate` protege las rutas del frontend, redirigiendo a usuarios no autenticados a la página de login.
+-   [x] **Formularios Reactivos de Angular:** Los formularios de login y de creación/edición de usuarios están construidos con `ReactiveFormsModule`, incluyendo validación en tiempo real.
+
+---
+
+## 🚀 Tecnologías Utilizadas
+
+-   **Backend:** NestJS (sobre Express), TypeScript
+-   **Frontend:** Angular 18, TypeScript
+-   **Base de Datos:** MongoDB
+-   **Comunicación en Tiempo Real:** Socket.IO
+-   **Autenticación:** Passport.js, JSON Web Token (JWT)
+-   **Seguridad:** BcryptJS
+-   **Containerización:** Docker & Docker Compose
 -   **Servidor Web (Frontend):** Nginx
 
 ---
 
-## 🏛️ Arquitetura
+## ⚙️ Cómo Ejecutar
 
-O projeto é dividido em três serviços principais, orquestrados pelo Docker Compose:
+El proyecto está totalmente containerizado. El único prerrequisito es tener **Docker** y **Docker Compose** instalados.
 
-1.  **`backend` (Node.js):**
-    -   É o "cérebro" da aplicação.
-    -   Mantém o estado do AGV (posição, ângulo, velocidade).
-    -   Executa o loop de simulação ("motor de física") que atualiza o estado do robô 30 vezes por segundo.
-    -   Recebe comandos de controle do frontend.
-    -   Transmite o estado atualizado do AGV para todos os clientes conectados via WebSockets.
-
-2.  **`frontend` (Angular + Nginx):**
-    -   É a "estação de controle" visual.
-    -   Recebe os dados do AGV em tempo real e os desenha em um elemento HTML Canvas.
-    -   Fornece a interface de usuário (botões) para enviar comandos de controle ao backend.
-    -   A aplicação Angular é servida por um servidor Nginx leve e otimizado para produção.
-
-3.  **`mongodb` (Banco de Dados):**
-    -   Serviço de banco de dados NoSQL, pronto para persistir dados futuros.
-    -   Atualmente, o backend se conecta a ele, mas ainda não está salvando dados.
-
-
-+-------------------------------------------------------------+
-| DOCKER COMPOSE                                              |
-|                                                             |
-|   +---------------------+      +------------------------+   |
-|   |  FRONTEND (Angular) |<---->|    BACKEND (Node.js)   |   |
-|   |   (Servido via Nginx) |      | (Express + Socket.IO)  |   |
-|   |   Porta: 4200       |      |    Porta: 3000         |   |
-|   +---------------------+      +----------+-------------+   |
-|           ^                               |                 |
-|           | WebSocket                     | MongoDB Driver  |
-|           v                               v                 |
-|   +---------------------+      +------------------------+   |
-|   |      NAVEGADOR      |      |     MONGODB            |   |
-|   |     (Usuário)       |      |   (Banco de Dados)     |   |
-|   +---------------------+      +------------------------+   |
-|                                                             |
-+-------------------------------------------------------------+
-
-
----
-
-## ⚙️ Como Executar
-
-O projeto é totalmente containerizado, então o único pré-requisito é ter o **Docker** e o **Docker Compose** instalados na sua máquina.
-
-1.  Clone este repositório.
-2.  Abra um terminal na pasta raiz do projeto.
-3.  Execute o seguinte comando:
-
+1.  Clona este repositorio.
+2.  Abre una terminal en la carpeta raíz del proyecto.
+3.  Ejecuta el siguiente comando para construir las imágenes e iniciar los contenedores:
     ```bash
     docker-compose up --build
     ```
-4.  Aguarde o Docker baixar as imagens e construir os contêineres.
-5.  Acesse **`http://localhost:4200`** no seu navegador para ver o simulador.
+4.  Espera a que termine el proceso.
+5.  Accede a **`http://localhost:4200`** en tu navegador.
 
-Para parar a aplicação, pressione `Ctrl + C` no terminal e, para remover os contêineres, execute `docker-compose down`.
+### Credenciales de Administrador
 
----
-
-## 🔮 Próximos Passos (Melhorias Futuras)
-
--   [ ] **Persistência de Dados:** Salvar o histórico de telemetria (posição, velocidade) do AGV no MongoDB.
--   [ ] **Sistema de Missões:** Criar uma coleção no MongoDB para definir "missões" (ex: ir do ponto A ao ponto B) e fazer o AGV executá-las.
--   [ ] **Detecção de Obstáculos:** Adicionar objetos estáticos ao ambiente e fazer o AGV desviar deles.
--   [ ] **Navegação Autônoma:** Implementar algoritmos de pathfinding (como A*) para que o AGV calcule a melhor rota para uma missão.
--   [ ] **Melhorias na Interface:** Adicionar um mapa, exibir o status do AGV (bateria, missão atual) e melhorar a aparência do painel de controle.
-
+Usa las siguientes credenciales para el primer inicio de sesión:
+* **Email:** `admin@admin.com`
+* **Contraseña:** `password123`
