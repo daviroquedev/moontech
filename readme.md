@@ -6,81 +6,137 @@ Además de los requisitos básicos, el proyecto integra una funcionalidad de **s
 
 ---
 
+## ⚙️ Cómo Ejecutar
+
+1. Clonar este repositorio.  
+2. Abrir una terminal en la carpeta raíz.  
+3. Ejecutar:  
+    ```bash
+    docker-compose up --build
+    ```
+4. Acceder a `http://localhost:4200`.
+
+ ---
+
+## Seeder de Datos Iniciales
+
+El backend incluye un **seeder** que se ejecuta automáticamente al iniciar la aplicación y garantiza un usuario administrador con:
+
+- **Email:** `admin@admin.com`  
+- **Contraseña:** `password123`  
+
+
+---
+
+## 📖 Documentación API REST con Swagger
+
+La documentación swagger está disponible en:  
+[http://localhost:3000/api/docs](http://localhost:3000/api/docs)  
+
+---
+
+## Rutas de la API REST
+
+Todas las rutas, excepto la de login, están protegidas con autenticación JWT.
+
+### Usuarios (protegida)
+
+| Método | Ruta              | Descripción                    |
+|--------|-------------------|-------------------------------|
+| POST   | `/api/users`      | Crear un nuevo usuario         |
+| GET    | `/api/users`      | Obtener todos los usuarios     |
+| PUT    | `/api/users/{id}` | Actualizar un usuario existente|
+| DELETE | `/api/users/{id}` | Eliminar un usuario por ID     |
+
+### Autenticación
+
+| Método | Ruta           | Descripción               |
+|--------|----------------|---------------------------|
+| POST   | `/api/auth/login`  | Iniciar sesión (pública) |
+| POST   | `/api/auth/logout` | Cerrar sesión (protegida)|
+
+### Registros
+
+| Método | Ruta          | Descripción                       |
+|--------|---------------|-----------------------------------|
+| GET    | `/api/logs`   | Obtener todos los registros (protegida) |
+
+---
+
+## Funcionalidad en Tiempo Real con WebSocket
+
+- **Simulador AGV:** Comunicación en tiempo real entre backend y la pantalla `/agv` para controlar el simulador mediante WebSockets.  
+- **Monitoreo de Logs:** En la pantalla `/logs` se muestran registros almacenados y eventos de login/logout en tiempo real via WebSocket.
+
+---
+
+## Diseño Responsive
+
+La aplicación es completamente responsive para dispositivos móviles y de escritorio, excepto la pantalla `/agv` (Simulador AGV) que mantiene un diseño fijo para una visualización óptima.
+
+---
+
 ## ✅ Cumplimiento de Requisitos
 
 El proyecto implementa con éxito todos los puntos obligatorios y valorables del desafío.
 
-### Requisitos del Backend (Node: NestJS)
+### Backend (Node: NestJS)
 
--   [x] **Conexión a Gestor de Bases de Datos:** La aplicación se conecta a una instancia de **MongoDB** gestionada por Docker.
--   [x] **Colección de Documentos de Usuarios:**
-    -   [x] `nombre`: Texto alfanumérico.
-    -   [x] `contraseña`: Texto alfanumérico (almacenado de forma segura con hash).
-    -   [x] `email`: Texto alfanumérico y único.
-    -   [x] `activo`: Booleano.
--   [x] **Colección de Documentos de Log de Conexiones:**
-    -   [x] `fecha`: Fecha de conexión/desconexión.
-    -   [x] `usuario`: Referencia al usuario.
-    -   [x] `login`: Booleano (`true` para login, `false` para logout).
--   [x] **Funcionalidad:**
-    -   [x] **Crear/Actualizar/Eliminar usuarios:** Implementado a través de una API REST protegida.
-    -   [x] **Autenticación de usuarios existentes:** Implementada con un endpoint de login seguro.
-    -   [x] **Creación de log de conexión:** Los logs se crean automáticamente al iniciar y cerrar sesión.
+-   [x] Conexión a MongoDB con Docker.  
+-   [x] Modelos de usuarios y logs completos y seguros.  
+-   [x] API REST con CRUD de usuarios y autenticación JWT.  
+-   [x] Registro automático de logs en eventos de login/logout.  
+-   [x] Documentación automática con Swagger.
 
 ### Frontend (Angular)
 
--   [x] **Pantalla de inicio de sesión:** Una página `/login` que permite a los usuarios autenticarse.
--   [x] **Pantalla de mantenimiento de usuarios (Formulario CRUD):** Una página `/` (protegida) que permite visualizar, agregar, editar y eliminar usuarios.
--   [x] **Pantalla de monitoreo de Agv (Websocket):** Una página `/agv` (protegida) que permite visualizar y controlar simuladores de AGV mediante WebSocket.
--   [ ] **Opcional - Pantalla de visualización de conexiones:** Esta funcionalidad está pendiente de implementación.
-
----
-
-## ✨ Puntos Valorables Implementados
-
-Este proyecto fue construido con foco en las mejores prácticas modernas de desarrollo, cubriendo todos los puntos valorables:
-
--   [x] **Conexión con WebSockets:** La comunicación para el simulador de AGV es en tiempo real usando Socket.IO, integrado de forma modular en NestJS mediante un **Gateway**.
--   [x] **Uso de Estrategias de Seguridad (JWT):** La autenticación se basa en JSON Web Tokens. El login genera un token y las rutas protegidas lo validan usando una **Estrategia JWT** con Passport.js.
--   [x] **Población de Datos Iniciales:** Un **"seeder"** se ejecuta al iniciar el backend para asegurar que un usuario `admin` estándar exista siempre en la base de datos.
--   [x] **Manejo de Variables de Entorno:** La aplicación usa un archivo `.env` para gestionar variables sensibles (como la cadena de conexión a MongoDB y el secreto JWT), cargadas de forma segura mediante el módulo `@nestjs/config`.
--   [x] **Encriptación de Contraseñas:** Las contraseñas nunca se guardan en texto plano. Se usa la librería **`bcryptjs`** para crear un hash seguro de todas las contraseñas antes de almacenarlas.
--   [x] **API Rest:** El backend expone una API REST clara y bien definida para la autenticación y el CRUD de usuarios.
--   [x] **Gestión de Tokens (JWT) en el Frontend:** El `AuthService` en Angular maneja el ciclo de vida del token, almacenándolo en `localStorage`.
--   [x] **Uso de Interceptors:** Un `HttpInterceptor` se usa para anexar automáticamente el token JWT a todas las solicitudes hacia la API protegida.
--   [x] **Uso de Route Guards:** Un `CanActivate` protege las rutas del frontend, redirigiendo a usuarios no autenticados a la página de login.
--   [x] **Formularios Reactivos de Angular:** Los formularios de login y de creación/edición de usuarios están construidos con `ReactiveFormsModule`, incluyendo validación en tiempo real.
+-   [x] Pantalla de login segura.  
+-   [x] CRUD completo de usuarios.  
+-   [x] Simulador AGV en tiempo real con WebSocket.  
+-   [x] Protección de rutas con Guards.  
+-   [x] Formulario reactivo con validaciones.  
+-   [x] Interceptors para manejo automático del token JWT.
 
 ---
 
 ## 🚀 Tecnologías Utilizadas
 
--   **Backend:** NestJS (sobre Express), TypeScript
--   **Frontend:** Angular 18, TypeScript
--   **Base de Datos:** MongoDB
--   **Comunicación en Tiempo Real:** Socket.IO
--   **Autenticación:** Passport.js, JSON Web Token (JWT)
--   **Seguridad:** BcryptJS
--   **Containerización:** Docker & Docker Compose
--   **Servidor Web (Frontend):** Nginx
+-   **Backend:** NestJS (Express), TypeScript  
+-   **Frontend:** Angular 18, TypeScript  
+-   **Base de Datos:** MongoDB  
+-   **Comunicación en Tiempo Real:** Socket.IO  
+-   **Autenticación:** Passport.js, JWT  
+-   **Seguridad:** BcryptJS  
+-   **Containerización:** Docker & Docker Compose  
+-   **Servidor Frontend:** Nginx  
 
 ---
 
-## ⚙️ Cómo Ejecutar
+## Units Test
 
-El proyecto está totalmente containerizado. El único prerrequisito es tener **Docker** y **Docker Compose** instalados.
+Actualmente, solo se ha cubierto aproximadamente el 44% del código con tests unitarios.
 
-1.  Clona este repositorio.
-2.  Abre una terminal en la carpeta raíz del proyecto.
-3.  Ejecuta el siguiente comando para construir las imágenes e iniciar los contenedores:
-    ```bash
-    docker-compose up --build
-    ```
-4.  Espera a que termine el proceso.
-5.  Accede a **`http://localhost:4200`** en tu navegador.
+![image](https://github.com/user-attachments/assets/2fe0edd1-9f5a-4d70-b765-a8b25fb66f70)
 
-### Credenciales de Administrador
+---
 
-Usa las siguientes credenciales para el primer inicio de sesión:
-* **Email:** `admin@admin.com`
-* **Contraseña:** `password123`
+## 📋 Convenciones para Commits (Conventional Commits)
+
+Este proyecto sigue la convención de **Conventional Commits** para mantener un historial de cambios claro, legible y automatizable. Esta práctica ayuda a que los mensajes de commit sean uniformes y facilita la generación automática de versiones y changelogs.
+
+---
+
+## 🚧 Puntos de Mejora
+
+- Implementar evasión de obstáculos en el simulador AGV para mayor realismo y funcionalidad.  
+- Mejorar la responsividad de la pantalla `/agv` para dispositivos móviles y distintas resoluciones.  
+- Mostrar el nombre de usuario en los registros (`logs`) en lugar de solo el ID para facilitar lectura y auditoría.  
+- Completar y aumentar la cobertura de tests unitarios para mayor calidad y robustez del código.
+
+---
+
+https://github.com/user-attachments/assets/cb0da6bd-1a04-486b-9805-bb46a708a82e
+
+
+
+
