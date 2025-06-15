@@ -165,11 +165,19 @@ docker-compose logs -f
 
 ---
 
-https://github.com/user-attachments/assets/cb0da6bd-1a04-486b-9805-bb46a708a82e
+## WEB SCOKET EXAMPLE VIDEO
+
+https://github.com/user-attachments/assets/eaf9e197-c103-41b0-adb5-04f59c3f241c
+
+## RESPONSIVE
 
 ![image](https://github.com/user-attachments/assets/cd532191-7430-4f88-8707-84c9210492c0)
 
-### toast 
+## TOAST
 ![image](https://github.com/user-attachments/assets/1e243d98-9d62-4b94-8d5a-008b0d962723)
+
+## VALIDATIONS
+
+![image](https://github.com/user-attachments/assets/74a85571-a68f-4976-b17e-f971a2d835bc)
 
 
