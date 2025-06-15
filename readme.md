@@ -168,7 +168,7 @@ docker-compose logs -f
 
 ---
 
-## WEB SCOKET EXAMPLE VIDEO
+## WEB SOCKET EXAMPLE VIDEO
 
 https://github.com/user-attachments/assets/eaf9e197-c103-41b0-adb5-04f59c3f241c
 
@@ -186,4 +186,10 @@ https://github.com/user-attachments/assets/eaf9e197-c103-41b0-adb5-04f59c3f241c
 ## PR EXAMPLE
 ![image](https://github.com/user-attachments/assets/11e6d3b0-b303-4f10-831b-64f14557c9f5)
 
+## CURIOSIDAD 
+
+Hace un tiempo comencé a desarrollar un pequeño juego utilizando Flutter, y muchos de los aprendizajes adquiridos en ese proceso me ayudaron bastante a construir el módulo de "AGV Control".
+Curiosamente, Flutter y Angular comparten varias similitudes en cuanto a arquitectura, modularización y gestión de estados, lo que facilitó bastante mi adaptación y desarrollo en este desafío.
+
+![image](https://github.com/user-attachments/assets/5ec2376d-989c-4f36-9fda-bc66b93cfac1)
 
