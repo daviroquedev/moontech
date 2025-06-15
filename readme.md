@@ -1,4 +1,4 @@
-# Prueba Técnica Moontech (Full Stack) - Simulador Integrado de AGV
+# Prueba Técnica Moontech (Full Stack) – Gestión de Usuarios y Simulador de AGV Integrado
 
 Este proyecto fue desarrollado para cumplir con todos los requisitos de la Prueba Técnica Full Stack de Moontech. La aplicación consiste en un backend robusto construido con **NestJS** y un frontend reactivo con **Angular**, completamente containerizados con Docker.
 
