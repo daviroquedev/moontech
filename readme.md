@@ -182,4 +182,7 @@ https://github.com/user-attachments/assets/eaf9e197-c103-41b0-adb5-04f59c3f241c
 
 ![image](https://github.com/user-attachments/assets/74a85571-a68f-4976-b17e-f971a2d835bc)
 
+## PR EXAMPLE
+![image](https://github.com/user-attachments/assets/11e6d3b0-b303-4f10-831b-64f14557c9f5)
+
 
