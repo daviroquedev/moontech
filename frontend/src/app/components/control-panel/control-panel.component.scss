@@ -1,0 +1,70 @@
+:host {
+    --control-bg-color: #f7f7f7;
+    --control-border-color: #e0e0e0;
+    --button-bg-color: #ffffff;
+    --button-hover-bg-color: #f0f0f0;
+    --button-selected-bg-color: #007bff;
+    --button-selected-color: #ffffff;
+    --text-color: #333;
+    --spacing: 1rem;
+  }
+  
+  .control-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: calc(var(--spacing) * 2);
+    padding: var(--spacing);
+    margin-top: var(--spacing); 
+    background-color: var(--control-bg-color);
+    border-top: 2px solid var(--control-border-color);
+    width: 100%;
+    box-sizing: border-box; 
+    position: relative;
+    z-index: 10;
+  }
+  
+  .control-panel__group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing) / 2);
+  }
+  
+  .control-panel__label {
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: calc(var(--spacing) / 2);
+  }
+  
+  .control-panel__manual-buttons {
+    display: flex;
+    gap: var(--spacing);
+  }
+  
+  .control-panel__button--select,
+  .control-panel__button--control {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--control-border-color);
+    background-color: var(--button-bg-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  
+    &:hover {
+      background-color: var(--button-hover-bg-color);
+    }
+  
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  
+  .control-panel__button--select.selected {
+    background-color: var(--button-selected-bg-color);
+    color: var(--button-selected-color);
+    border-color: var(--button-selected-bg-color);
+    font-weight: bold;
+  }
+  

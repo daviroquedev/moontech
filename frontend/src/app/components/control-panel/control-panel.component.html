@@ -1,0 +1,11 @@
+<div class="control-panel">
+  <div class="control-panel__group">
+    <p class="control-panel__label">Controles Manuales (Mantener pulsado):</p>
+    <div class="control-panel__manual-buttons">
+      <button class="control-panel__button--control" (mousedown)="sendCommand('turn', -1.5)" (mouseup)="sendCommand('turn', 0)">⟲ Izquierda</button>
+      <button class="control-panel__button--control" (mousedown)="sendCommand('move', 50)" (mouseup)="sendCommand('move', 0)">↑ Adelante</button>
+      <button class="control-panel__button--control" (mousedown)="sendCommand('move', -50)" (mouseup)="sendCommand('move', 0)">↓ Atrás</button>
+      <button class="control-panel__button--control" (mousedown)="sendCommand('turn', 1.5)" (mouseup)="sendCommand('turn', 0)">Derecha ⟳</button>
+    </div>
+  </div>
+</div>
