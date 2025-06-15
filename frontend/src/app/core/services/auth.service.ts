@@ -37,7 +37,7 @@ export class AuthService {
     );
   }
 
-  private clearLocalSession(): void {
+  clearLocalSession(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     this.router.navigate(['/login']);
   }

@@ -6,7 +6,6 @@
   min-height: 100vh;
   background-color: var(--primary-color);
   background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-darker) 100%);
-  padding: 1rem;
   box-sizing: border-box;
 }
 
@@ -18,6 +17,7 @@
   width: 100%;
   max-width: 420px;
   text-align: center;
+  padding: 1rem;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   &:hover {
@@ -41,7 +41,7 @@
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+
   text-align: left;
 
   label {
@@ -99,4 +99,35 @@
   padding: 0.75rem;
   margin-bottom: 1.5rem;
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1rem;
+    max-width: 90%;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .login-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .login-header p {
+    font-size: 0.9rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .login-button {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
 }
