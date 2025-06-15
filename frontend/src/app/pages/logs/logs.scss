@@ -1,0 +1,45 @@
+.logs-container {
+  padding: 20px;
+}
+
+.log-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.log-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  display: flex;
+  gap: 15px;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.timestamp {
+  color: #888;
+  min-width: 150px; /* Adjust as needed */
+}
+
+.level {
+  font-weight: bold;
+  min-width: 80px; /* Adjust as needed */
+}
+
+.level.error {
+  color: red;
+}
+
+.level.warn {
+  color: orange;
+}
+
+.level.info {
+  color: blue;
+}
+
+.message {
+  flex-grow: 1;
+}

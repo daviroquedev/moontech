@@ -1,0 +1,11 @@
+<div class="logs-container">
+  <h2>System Logs</h2>
+  <ul class="log-list">
+    <li *ngFor="let log of logs" class="log-item">
+      <span class="timestamp">{{ log.timestamp | date:'medium' }}</span>
+      <span class="level" [ngClass]="log.level">{{ log.level }}</span>
+      <span class="message">{{ log.message }}</span>
+    </li>
+  </ul>
+  <p *ngIf="!logs || logs.length === 0">No logs to display.</p>
+</div>
