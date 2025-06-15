@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+   
+    --primary-color: #0E2D5B;
+    --primary-color-darker: #1a4a8a;
+    
+    --background-color: #f4f7fc;
+    --text-color-dark: #333333;
+    --text-color-light: #ffffff;
+
+    --error-color: #d93025;
+    --success-color: #28a745;
+
+    --border-color: #ced4da;
+    --button-disabled-bg: #a0a0a0;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--text-color-dark);
+    background-color: var(--background-color);
+  }
+  

@@ -1,8 +1,10 @@
-<div class="login-container">
-  <div class="login-form">
-    <h2>Ingreso al Simulador</h2>
-    <p>Accede con tus credenciales para gestionar la flota.</p>
-
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Ingreso al Sistema</h2>
+      <p>Gestión y monitoreo de Usuarios y flota de AGVs</p>
+    </div>
+    
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       
       <div class="form-group">
@@ -14,12 +16,12 @@
         <label for="password">Contraseña</label>
         <input id="password" type="password" formControlName="contrasena" placeholder="******">
       </div>
-
+      
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
       
-      <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+      <button class="login-button" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
     </form>
   </div>
 </div>
