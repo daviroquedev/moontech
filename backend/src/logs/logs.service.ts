@@ -11,6 +11,10 @@ export class LogsService {
     private logsGateway: LogsGateway,
   ) {}
 
+  async findAll(): Promise<Log[]> {
+    return this.logModel.find().sort({ createdAt: -1 }).exec();
+  }
+
   async createLog(userId: string, isLogin: boolean): Promise<Log> {
     const newLog = new this.logModel({
       usuario: userId,

@@ -21,7 +21,6 @@ export class UserManagementComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private authService: AuthService,
     private fb: FormBuilder
   ) {
     this.userForm = this.fb.group({
@@ -92,12 +91,6 @@ export class UserManagementComponent implements OnInit {
     this.showForm = false;
   }
 
-  logout(): void {
-    this.authService.logout().subscribe({
-      next: () => console.log('Cierre de sesión exitoso y registrado en el backend.'),
-      error: err => console.error('Ocurrió un error durante el cierre de sesión:', err),
-    });
-  }
   
 
   

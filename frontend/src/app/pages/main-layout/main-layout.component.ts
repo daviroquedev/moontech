@@ -1,24 +1,29 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
-import { SimulatorComponent } from '../../components/simulator/simulator.component';
-import { ControlPanelComponent } from '../../components/control-panel/control-panel.component';
+import { AuthService } from '../../core/services/auth.service'; // ajuste o caminho conforme sua estrutura
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [SimulatorComponent, ControlPanelComponent, RouterLink],
+  imports: [RouterModule],
   templateUrl: './main-layout.component.html',
-  styleUrl: './main-layout.component.scss'
+  styleUrls: ['./main-layout.component.scss']
 })
 export class MainLayoutComponent {
+  constructor(private authService: AuthService, private router: Router) {}
 
-  constructor(private authService: AuthService, private router: Router) { }
+  menuOpen = false;
 
-  logout(): void {
-    this.authService.logout().subscribe({
-      next: () => console.log('Cierre de sesión exitoso y registrado en el backend.'),
-      error: err => console.error('Ocurrió un error durante el cierre de sesión:', err),
-    });
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

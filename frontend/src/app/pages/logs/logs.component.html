@@ -1,9 +1,12 @@
-<div class="logs-container">
-    <h2>Logs em tempo real</h2>
-    <ul>
-      <li *ngFor="let log of logs">
-        <strong>{{ log.usuario }}</strong> 
-        {{ log.login ? 'logou' : 'deslogou' }} em {{ log.fecha | date:'short' }}
-      </li>
-    </ul>
-  </div>
+<div class="logs-wrapper">
+    <div class="logs-list">
+        <div *ngFor="let log of logs" class="log-item">
+            <div class="log-info">
+                <div class="log-user">{{ log.usuario }}</div>
+                <div class="log-action">
+                    {{ log.login ? 'logou' : 'deslogou' }} em {{ log.fecha | date: 'short' }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,17 @@
 <header class="main-header">
-  <h1>Simulador de AGV</h1>
-  <nav>
-    <a routerLink="/" class="nav-link">Gestionar Usuarios</a>
+  <h1> Moontech </h1>
+
+  <!-- Botão hamburger para telas pequenas -->
+  <button class="hamburger" (click)="toggleMenu()" aria-label="Abrir menu">
+    ☰
+  </button>
+  <nav [class.open]="menuOpen">
+    <a routerLink="/usuarios" class="nav-link" (click)="closeMenu()">Gestionar Usuarios</a>
+    <a routerLink="/agv" class="nav-link" (click)="closeMenu()">Agv Simulator</a>
+    <a routerLink="/logs" class="nav-link" (click)="closeMenu()">Logs</a>
     <button (click)="logout()" class="btn-logout">Salir</button>
   </nav>
 </header>
-
 <main>
-  <app-simulator></app-simulator>
-  <app-control-panel></app-control-panel>
+  <router-outlet></router-outlet>
 </main>

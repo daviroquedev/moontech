@@ -9,19 +9,20 @@ export class LogsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
   server: Server;
 
   afterInit() {
-    console.log('✅ Servidor WebSocket de Logs inicializado.');
+    console.log('✅ WebSocket Gateway Logs inicializado con éxito!');
   }
 
   handleConnection(client: Socket) {
-    console.log(`Cliente conectado ao logs: ${client.id}`);
+    console.log(`Cliente conectado a logs: ${client.id}`);
   }
 
   handleDisconnect(client: Socket) {
-    console.log(`Cliente desconectado do logs: ${client.id}`);
+    console.log(`Cliente desconectado de logs: ${client.id}`);
   }
 
-  // Método para emitir novos logs
   emitLog(log: any) {
+    console.log('Emitiendo log vía websocket:', log);
+
     this.server.emit('new-log', log);
   }
 }
