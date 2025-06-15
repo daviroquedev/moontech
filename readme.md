@@ -167,6 +167,8 @@ docker-compose logs -f
 
 https://github.com/user-attachments/assets/cb0da6bd-1a04-486b-9805-bb46a708a82e
 
+![image](https://github.com/user-attachments/assets/cd532191-7430-4f88-8707-84c9210492c0)
+
 
 
 
