@@ -95,13 +95,13 @@
   background: var(--text-color-light);
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  overflow: auto; // permite scroll horizontal no mobile
+  overflow: auto;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px; // evitar quebra muito drástica
+  min-width: 600px; 
 
   th,
   td {
