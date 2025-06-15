@@ -6,6 +6,17 @@ Además de los requisitos básicos, el proyecto integra una funcionalidad de **s
 
 ---
 
+## 🛠️ Requisitos Previos
+
+Para ejecutar este proyecto es necesario tener instalado y funcionando correctamente:
+
+- [Docker](https://docs.docker.com/get-docker/)  
+- [Docker Compose](https://docs.docker.com/compose/install/)  
+
+Ambos son imprescindibles para construir y levantar los contenedores de backend, frontend y base de datos.
+
+---
+
 ## ⚙️ Cómo Ejecutar
 
 1. Clonar este repositorio.  
@@ -125,6 +136,25 @@ Actualmente, solo se ha cubierto aproximadamente el 44% del código con tests un
 Este proyecto sigue la convención de **Conventional Commits** para mantener un historial de cambios claro, legible y automatizable. Esta práctica ayuda a que los mensajes de commit sean uniformes y facilita la generación automática de versiones y changelogs.
 
 ---
+
+## ⚠️ Posibles Errores y Soluciones
+
+| Error | Causa Común | Solución |
+|-------|-------------|----------|
+| `docker-compose command not found` | Docker Compose no está instalado o no está en el PATH | Instalar Docker Compose y verificar su instalación con `docker-compose --version` |
+| Error de puertos ocupados al levantar los contenedores | Otro servicio está usando el puerto 4200 (frontend) o 3000 (backend) | Detener el servicio que ocupa esos puertos o cambiar la configuración del puerto en `docker-compose.yml` |
+| Contenedor MongoDB no arranca o falla la conexión | El volumen de datos está corrupto o hay un problema en la configuración | Eliminar el volumen de datos de MongoDB o revisar variables de entorno |
+| Errores en el build de Angular o NestJS durante `docker-compose up --build` | Dependencias faltantes o incompatibilidades de versiones | Verificar que `package.json` esté correcto, limpiar caches y reconstruir imágenes con `docker-compose build --no-cache` |
+| `import.meta.dirname` undefined en entorno Node | Node.js versión antigua o configuración incorrecta | Actualizar Node.js a versión >=16 o ajustar configuración del ESLint/TS |
+| Problemas con WebSockets en producción | Proxy o firewall bloqueando los puertos o rutas WS | Configurar correctamente Nginx para WebSocket, abrir puertos en firewall |
+
+---
+
+Si encuentras otro problema, revisa los logs con:
+
+```bash
+docker-compose logs -f
+```
 
 ## 🚧 Puntos de Mejora
 
