@@ -23,7 +23,7 @@ export class MainLayoutComponent {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout().subscribe();
     this.router.navigate(['/login']);
     this.authService.clearLocalSession(); 
   }
