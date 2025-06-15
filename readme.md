@@ -19,13 +19,15 @@ Ambos son imprescindibles para construir y levantar los contenedores de backend,
 
 ## ⚙️ Cómo Ejecutar
 
+
 1. Clonar este repositorio.  
-2. Abrir una terminal en la carpeta raíz.  
-3. Ejecutar:  
+2. Asegúrate de que el servicio **Docker** esté instalado y en ejecución en tu máquina.  
+3. Abrir una terminal en la carpeta raíz del proyecto.  
+4. Ejecutar:  
     ```bash
     docker-compose up --build
     ```
-4. Acceder a `http://localhost:4200`.
+5. Acceder a `http://localhost:4200`.
 
  ---
 
