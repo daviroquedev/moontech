@@ -1,28 +1,31 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
-import { getModelToken } from '@nestjs/mongoose';
-import { User } from '../users/schemas/user.schema';
+import { LogsService } from '../logs/logs.service'; 
 
 describe('AuthController', () => {
   let controller: AuthController;
 
- 
   const mockAuthService = {
     validateUser: jest.fn(),
     login: jest.fn(),
+  };
+
+  const mockLogsService = {
+    log: jest.fn(), 
   };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
       providers: [
-       
         {
           provide: AuthService,
           useValue: mockAuthService,
+        },
+        {
+          provide: LogsService,
+          useValue: mockLogsService,
         },
       ],
     }).compile();
