@@ -14,7 +14,7 @@ Para ejecutar este proyecto es necesario tener instalado y funcionando correctam
 - [Docker Compose](https://docs.docker.com/compose/install/)  
 
 Ambos son imprescindibles para construir y levantar los contenedores de backend, frontend y base de datos.
-
+> ℹ️ **Nota:** Se ha removido temporalmente el `.env` del `.gitignore` únicamente para facilitar las pruebas locales. **No se recomienda mantenerlo versionado en entornos productivos.**
 ---
 
 ## ⚙️ Cómo Ejecutar
