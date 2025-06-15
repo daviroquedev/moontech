@@ -27,7 +27,8 @@ Ambos son imprescindibles para construir y levantar los contenedores de backend,
     ```bash
     docker-compose up --build
     ```
-5. Acceder a `http://localhost:4200`.
+5. Esperar entre 1 y 4 minutos mientras se inicializan los contenedores, dependiendo de la potencia de tu máquina.
+6. Acceder a `http://localhost:4200`.
 
  ---
 
