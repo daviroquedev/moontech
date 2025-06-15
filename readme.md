@@ -31,7 +31,7 @@ El proyecto implementa con éxito todos los puntos obligatorios y valorables del
 
 -   [x] **Pantalla de inicio de sesión:** Una página `/login` que permite a los usuarios autenticarse.
 -   [x] **Pantalla de mantenimiento de usuarios (Formulario CRUD):** Una página `/` (protegida) que permite visualizar, agregar, editar y eliminar usuarios.
--   [x] **Pantalla de monitoreo de Agv (Websocket):** Una página `/avg` (protegida) que permite visualizar y controlar simuladores de AGV mediante WebSocket.
+-   [x] **Pantalla de monitoreo de Agv (Websocket):** Una página `/agv` (protegida) que permite visualizar y controlar simuladores de AGV mediante WebSocket.
 -   [ ] **Opcional - Pantalla de visualización de conexiones:** Esta funcionalidad está pendiente de implementación.
 
 ---

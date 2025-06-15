@@ -1,0 +1,12 @@
+<div class="logs-wrapper">
+    <div class="logs-list">
+        <div *ngFor="let log of logs" class="log-item">
+            <div class="log-info">
+                <div class="log-user">{{ log.usuario }}</div>
+                <div class="log-action">
+                    {{ log.login ? 'logou' : 'deslogou' }} em {{ log.fecha | date: 'short' }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
