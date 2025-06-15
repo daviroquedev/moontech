@@ -1,0 +1,73 @@
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+  
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+  
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  
+    .nav-link {
+      color: var(--text-color-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+  
+      &:hover,
+      &:focus {
+        color: var(--primary-color-darker);
+        text-decoration: underline;
+      }
+    }
+  
+    .btn-logout {
+      background-color: var(--background-color);
+      color: var(--primary-color);
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+  
+      &:hover,
+      &:focus {
+        background-color: var(--primary-color-darker);
+        color: var(--text-color-light);
+      }
+    }
+  }
+  
+  main {
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    min-height: calc(100vh - 72px); // Ajuste pro header
+  
+    app-simulator,
+    app-control-panel {
+      background: var(--background-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      flex: 1;
+    }
+  
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  

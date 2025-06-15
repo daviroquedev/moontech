@@ -1,17 +1,19 @@
-<div class="admin-page">
-  <header class="admin-header">
+<header class="admin-header">
     <div class="admin-header__title">
       <h1>Gestión de Usuarios</h1>
       <p>Crear, editar y gestionar los accesos de tu equipo.</p>
     </div>
     <nav class="admin-header__nav">
-      <a routerLink="/" class="nav-link">Simulador de AGV</a>
+      <a routerLink="/agv" class="nav-link">Simulador de AGV</a>
+      
       <button class="btn btn-primary" (click)="showForm = !showForm">
         <span class="icon">+</span> Añadir Usuario
       </button>
-    </nav>
-  </header>
 
+      <button  class="btn btn-primary" (click)="logout()">Salir</button>
+    </nav>
+</header>
+<main>
   <div class="form-inline" *ngIf="showForm" @fade>
     <div class="form-card">
       <h3>{{ isEditing ? 'Editar Usuario' : 'Nuevo Usuario' }}</h3>
@@ -67,4 +69,5 @@
       </tbody>
     </table>
   </div>
-</div>
+
+</main>

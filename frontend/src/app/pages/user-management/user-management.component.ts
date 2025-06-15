@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService, User } from '../../core/services/user.service';
+import { AuthService } from '../../core/services/auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss'
 })
@@ -19,6 +21,7 @@ export class UserManagementComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private fb: FormBuilder
   ) {
     this.userForm = this.fb.group({
@@ -88,4 +91,14 @@ export class UserManagementComponent implements OnInit {
   closeForm(): void {
     this.showForm = false;
   }
+
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: () => console.log('Cierre de sesión exitoso y registrado en el backend.'),
+      error: err => console.error('Ocurrió un error durante el cierre de sesión:', err),
+    });
+  }
+  
+
+  
 }

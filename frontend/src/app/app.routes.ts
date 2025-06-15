@@ -13,12 +13,12 @@ export const routes: Routes = [
   // Esta rota é protegida pelo nosso 'authGuard'
   { 
     path: '', 
-    component: MainLayoutComponent,
+    component:  UserManagementComponent,
     canActivate: [authGuard]
   },
    {
-    path: 'admin/users',
-    component: UserManagementComponent,
+    path: 'agv',
+    component: MainLayoutComponent,
     canActivate: [authGuard]
   },
 
